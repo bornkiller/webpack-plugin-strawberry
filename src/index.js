@@ -5,13 +5,22 @@
 
 'use strict';
 
-/**
- * @description - just example
- *
- * @return {number}
- */
-module.exports = function sum() {
-  let numbers = Array.from(arguments);
+const _ = require('lodash');
 
-  return numbers.reduce((acc, curr) => acc + curr, 0);
+const defaultOptions = {
+  name: 'manifest.json'
 };
+
+class StrawberryPlugin {
+  constructor(options) {
+    this.options = _.merge({}, defaultOptions, options);
+  }
+
+  apply(compiler) {
+    compiler.plugin('done', () => {
+      // console.log('webpack-plugin-strawberry done');
+    });
+  }
+}
+
+module.exports = StrawberryPlugin;
