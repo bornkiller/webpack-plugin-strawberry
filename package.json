@@ -1,0 +1,36 @@
+{
+  "name": "webpack-plugin-strawberry",
+  "version": "0.1.0",
+  "description": "webpack plugin practice.",
+  "main": "src/index.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "jest --config jest.config.js --coverage",
+    "test:watch": "jest --config jest.config.js --watch",
+    "lint": "npm-run-all -p lint:*",
+    "lint:source": "eslint --fix src/",
+    "lint:test": "eslint --fix __tests__/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bornkiller/webpack-plugin-strawberry.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin"
+  ],
+  "author": "bornkiller <hjj491229492@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bornkiller/webpack-plugin-strawberry/issues"
+  },
+  "homepage": "https://github.com/bornkiller/webpack-plugin-strawberry#README",
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "husky": "^0.14.3",
+    "jest": "^20.0.4",
+    "lint-staged": "^4.0.1",
+    "npm-run-all": "^4.0.2"
+  },
+  "dependencies": {}
+}
