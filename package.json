@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "precommit": "lint-staged",
-    "test": "jest --config jest.config.js --coverage",
+    "test": "jest --config jest.config.js",
     "test:watch": "jest --config jest.config.js --watch",
     "lint": "npm-run-all -p lint:*",
     "lint:source": "eslint --fix src/",
@@ -27,12 +27,18 @@
   "homepage": "https://github.com/bornkiller/webpack-plugin-strawberry#README",
   "devDependencies": {
     "eslint": "^4.2.0",
+    "file-loader": "^0.11.2",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.1",
-    "npm-run-all": "^4.0.2"
+    "lodash.isnull": "^3.0.0",
+    "lodash.isundefined": "^3.0.1",
+    "memory-fs": "^0.4.1",
+    "npm-run-all": "^4.0.2",
+    "webpack": "^3.3.0"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "webpack-sources": "^1.0.1"
   }
 }
