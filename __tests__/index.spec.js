@@ -6,6 +6,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const _ = require('lodash');
 const MemoryFileSystem = require('memory-fs');
 
 // Internal
@@ -29,16 +30,13 @@ const WebpackBaseOptions = {
             loader: 'file-loader',
             options: {
               limit: 5000,
-              name: 'assets/[name].[ext]'
+              name: '[name].[ext]'
             }
           }
         ]
       }
     ]
-  },
-  plugins: [
-    new StrawberryPlugin()
-  ]
+  }
 };
 
 describe('StrawberryPlugin suits', function () {
@@ -47,16 +45,27 @@ describe('StrawberryPlugin suits', function () {
   });
 
   it('should complete workflow', function (done) {
-    const compiler = webpack(WebpackBaseOptions);
+    const configuration = _.assign(WebpackBaseOptions, {
+      plugins: [
+        new StrawberryPlugin({
+          threshold: 0
+        })
+      ]
+    });
+    const compiler = webpack(configuration);
     const fs = compiler.outputFileSystem = new MemoryFileSystem();
 
     compiler.run((err, stat) => {
+      const reg = /gz$/;
       const files = fs.readdirSync(path.resolve(__dirname, 'dist'));
+      const pristineFiles = files.filter((filename) => !reg.test(filename));
 
       expect(err).toBeNull();
       expect(stat.hasErrors()).toBe(false);
-      expect(files).toContain('main.js');
-      expect(files).toContain('main.js.gz');
+
+      pristineFiles.forEach((filename) => {
+        expect(files).toContain(`${filename}.gz`);
+      });
 
       done();
     });
