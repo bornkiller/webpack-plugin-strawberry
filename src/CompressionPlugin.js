@@ -1,5 +1,5 @@
 /**
- * @description - node-lib-starter
+ * @description - webpack compression plugin for pre-gzip optimize for nginx
  * @author - bornkiller <hjj491229492@hotmail.com>
  */
 
@@ -20,7 +20,7 @@ const defaultOptions = {
 };
 const noop = () => {};
 
-class StrawberryPlugin {
+class CompressionPlugin {
   constructor(options) {
     this.options = _.assign({}, _.omit(defaultOptions, 'compressOptions'), _.omit(options, 'compressOptions'));
     this.compressOptions = _.assign({}, _.pick(defaultOptions, 'compressOptions'), _.pick(options, 'compressOptions'));
@@ -61,12 +61,7 @@ class StrawberryPlugin {
         index === lastIndex && callback();
       });
     });
-
-    compiler.plugin('done', () => {
-      // eslint-disable-next-line no-console
-      console.log('webpack-plugin-strawberry done');
-    });
   }
 }
 
-module.exports = StrawberryPlugin;
+module.exports = CompressionPlugin;

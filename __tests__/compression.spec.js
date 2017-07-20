@@ -7,17 +7,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const _ = require('lodash');
-const MemoryFileSystem = require('memory-fs');
+const fs = require('fs');
+const fse = require('fs-extra');
 
 // Internal
-const StrawberryPlugin = require('../');
+const { CompressionPlugin } = require('../');
 const WebpackBaseOptions = {
   entry: path.resolve(__dirname, '__fixture__', 'strawberry.js'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/'
-  },
   resolve: {
     extensions: ['.js', '.html', '.scss', '.css'],
   },
@@ -39,25 +35,35 @@ const WebpackBaseOptions = {
   }
 };
 
-describe('StrawberryPlugin suits', function () {
-  beforeAll(() => {
+describe('CompressionPlugin suits', function () {
+  const CompressionWorkingDirectory = path.resolve(__dirname, 'compression');
+
+  beforeEach(() => {
     require.requireActual('file-loader');
+    fse.removeSync(CompressionWorkingDirectory);
   });
 
   it('should complete workflow', function (done) {
     const configuration = _.assign(WebpackBaseOptions, {
+      output: {
+        path: path.resolve(CompressionWorkingDirectory, 'compression_1'),
+        filename: '[name].js',
+        publicPath: '/'
+      },
       plugins: [
-        new StrawberryPlugin({
+        new CompressionPlugin({
           threshold: 0
         })
       ]
     });
     const compiler = webpack(configuration);
-    const fs = compiler.outputFileSystem = new MemoryFileSystem();
+    const outputPath = configuration.output.path;
+
+    fse.emptyDirSync(outputPath);
 
     compiler.run((err, stat) => {
       const reg = /gz$/;
-      const files = fs.readdirSync(path.resolve(__dirname, 'dist'));
+      const files = fs.readdirSync(configuration.output.path);
       const pristineFiles = files.filter((filename) => !reg.test(filename));
 
       expect(err).toBeNull();
@@ -69,5 +75,9 @@ describe('StrawberryPlugin suits', function () {
 
       done();
     });
+  });
+
+  afterEach(() => {
+    fse.removeSync(CompressionWorkingDirectory);
   });
 });
