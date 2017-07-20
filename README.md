@@ -4,7 +4,7 @@
 ![Package Dependency](https://david-dm.org/bornkiller/webpack-plugin-strawberry.svg?style=flat)
 ![Package DevDependency](https://david-dm.org/bornkiller/webpack-plugin-strawberry/dev-status.svg?style=flat)
 
-Starter kit for building node.js lib.
+Pre-compress assets for better nginx gzip performance.
 
 ## License
 MIT
