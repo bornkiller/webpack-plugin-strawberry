@@ -2,10 +2,10 @@
   "name": "webpack-plugin-strawberry",
   "version": "0.1.0",
   "description": "webpack plugin practice.",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "precommit": "lint-staged",
-    "test": "jest --config jest.config.js",
+    "test": "jest --config jest.config.js --coverage",
     "test:watch": "jest --config jest.config.js --watch",
     "lint": "npm-run-all -p lint:*",
     "lint:source": "eslint --fix src/",
@@ -28,16 +28,17 @@
   "devDependencies": {
     "eslint": "^4.2.0",
     "file-loader": "^0.11.2",
+    "fs-extra": "^4.0.0",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.1",
     "lodash.isnull": "^3.0.0",
     "lodash.isundefined": "^3.0.1",
-    "memory-fs": "^0.4.1",
     "npm-run-all": "^4.0.2",
     "webpack": "^3.3.0"
   },
   "dependencies": {
+    "fs-readdir-recursive": "^1.0.0",
     "lodash": "^4.17.4",
     "webpack-sources": "^1.0.1"
   }
