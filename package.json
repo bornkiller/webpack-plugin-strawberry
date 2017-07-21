@@ -1,6 +1,6 @@
 {
   "name": "webpack-plugin-strawberry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "webpack plugin practice.",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,10 @@
     "lint:source": "eslint --fix src/",
     "lint:test": "eslint --fix __tests__/"
   },
+  "files": [
+    "src",
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/bornkiller/webpack-plugin-strawberry.git"
