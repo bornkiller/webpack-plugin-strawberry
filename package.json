@@ -12,7 +12,8 @@
     "lint:test": "eslint --fix __tests__/"
   },
   "files": [
-    "src",
+    "helper",
+    "lib",
     "index.js"
   ],
   "repository": {

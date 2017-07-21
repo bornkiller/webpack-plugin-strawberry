@@ -4,7 +4,7 @@
  */
 'use strict';
 
-const { validateExcludeRules, matchExcludeRules } = require('../src/util');
+const { validateExcludeRules, matchExcludeRules } = require('../helper/util');
 
 describe('util methods', function () {
   it('should validate exclude options', function () {

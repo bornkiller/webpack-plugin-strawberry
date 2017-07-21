@@ -4,8 +4,8 @@
  */
 'use strict';
 
-const CompressionPlugin = require('./src/CompressionPlugin');
-const CleanupPlugin = require('./src/CleanupPlugin');
+const CompressionPlugin = require('./lib/CompressionPlugin');
+const CleanupPlugin = require('./lib/CleanupPlugin');
 
 module.exports = {
   CompressionPlugin,

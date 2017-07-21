@@ -8,13 +8,14 @@ module.exports = {
     '\\.(css|less|scss)$': 'identity-obj-proxy'
   },
   // Coverage report
-  collectCoverageFrom: ['src/**/*.js'],
+  collectCoverageFrom: ['helper/**/*.js', 'lib/**/*.js'],
   coverageDirectory: 'coverage',
   coverageReporters: ['lcov', 'html'],
   // Test configuration
   testMatch: ['**/__tests__/**/*.spec.js'],
   testPathIgnorePatterns: [
     '/node_modules/',
-    '/dist/'
+    '/dist/',
+    '/__fixture__/'
   ]
 };
